@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BD526A6F-A1D6-42F4-A2A4-D10EE77F1448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{68C8BA02-48EB-4EA1-9649-B402AE3E9CE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{05DF8526-8B23-4355-8A19-A2E4852A62FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{E79D1AD7-7AED-4EE6-B458-F5E897FD7844}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F2DCDB89-3515-4319-925C-E4DC78EB470C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{AE682368-E66D-4F67-8860-A0AF856D0CFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui", "Maui\Maui.csproj", "{355EC3CC-EFFF-4089-94B1-52266758DF6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05DF8526-8B23-4355-8A19-A2E4852A62FF} = {BD526A6F-A1D6-42F4-A2A4-D10EE77F1448}
+		{E79D1AD7-7AED-4EE6-B458-F5E897FD7844} = {BD526A6F-A1D6-42F4-A2A4-D10EE77F1448}
+		{F2DCDB89-3515-4319-925C-E4DC78EB470C} = {BD526A6F-A1D6-42F4-A2A4-D10EE77F1448}
+		{AE682368-E66D-4F67-8860-A0AF856D0CFE} = {BD526A6F-A1D6-42F4-A2A4-D10EE77F1448}
+		{355EC3CC-EFFF-4089-94B1-52266758DF6A} = {F2DCDB89-3515-4319-925C-E4DC78EB470C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8FBBF97-19A1-4857-A752-A6A11E668167}
+	EndGlobalSection
+EndGlobal

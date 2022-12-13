@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveUiTemplates", "ReactiveUiTemplates\ReactiveUiTemplates.csproj", "{A473FB11-38F9-41CC-81A6-DA3B5CC11755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTemplates", "WpfTemplates\WpfTemplates.csproj", "{283851A3-782B-42EA-80B5-57ABA21ABF88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A473FB11-38F9-41CC-81A6-DA3B5CC11755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A473FB11-38F9-41CC-81A6-DA3B5CC11755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A473FB11-38F9-41CC-81A6-DA3B5CC11755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A473FB11-38F9-41CC-81A6-DA3B5CC11755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283851A3-782B-42EA-80B5-57ABA21ABF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283851A3-782B-42EA-80B5-57ABA21ABF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283851A3-782B-42EA-80B5-57ABA21ABF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283851A3-782B-42EA-80B5-57ABA21ABF88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {852BDDDB-29B1-4D2A-8684-E0B3ACE277FB}
+	EndGlobalSection
+EndGlobal
