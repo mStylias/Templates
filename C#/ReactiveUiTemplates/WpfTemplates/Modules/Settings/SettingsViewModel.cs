@@ -2,7 +2,7 @@
 using ReactiveUI;
 using Splat;
 
-namespace WpfTemplates.UserControls.Settings;
+namespace WpfTemplates.Modules.Settings;
 
 public class SettingsViewModel : ReactiveObject, IRoutableViewModel
 {

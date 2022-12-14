@@ -3,7 +3,7 @@ using ReactiveUI.Fody.Helpers;
 using Splat;
 using System;
 
-namespace WpfTemplates.UserControls.Home;
+namespace WpfTemplates.Modules.Home;
 
 public class HomeViewModel : ReactiveObject, IRoutableViewModel
 {

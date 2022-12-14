@@ -1,8 +1,8 @@
 ﻿using ReactiveUI;
 using System;
 using System.Reactive;
-using WpfTemplates.UserControls.Home;
-using WpfTemplates.UserControls.Settings;
+using WpfTemplates.Modules.Home;
+using WpfTemplates.Modules.Settings;
 
 namespace WpfTemplates;
 

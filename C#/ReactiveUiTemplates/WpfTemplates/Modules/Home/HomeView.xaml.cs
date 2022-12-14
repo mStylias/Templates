@@ -1,7 +1,6 @@
 ﻿using ReactiveUI;
-using Splat;
 
-namespace WpfTemplates.UserControls.Home;
+namespace WpfTemplates.Modules.Home;
 
 public partial class HomeView : ReactiveUserControl<HomeViewModel>
 {
