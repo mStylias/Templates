@@ -1,7 +1,6 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using Splat;
-using System;
+using WpfTemplates.DependencyInjection.Factories;
 
 namespace WpfTemplates.Modules.Home;
 
@@ -11,11 +10,10 @@ public class HomeViewModel : ReactiveObject, IRoutableViewModel
     public IScreen HostScreen { get; }
 
     [Reactive]
-    public string Message { get; set; }
+    public string? MessageText { get; set; }
 
-    public HomeViewModel(IScreen hostScreen = null)
+    public HomeViewModel(IScreenFactory screenFactory)
     {
-        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>()!;
-        MessageBus.Current.Listen<string>("Message").Subscribe(m => Message = m);
+        HostScreen = screenFactory.GetMainWindowViewModel();
     }
 }

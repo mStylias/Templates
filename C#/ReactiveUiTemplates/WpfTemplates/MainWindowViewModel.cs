@@ -1,26 +1,72 @@
 ﻿using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using System.Linq;
 using System.Reactive;
+using System.Reactive.Linq;
+using System.Reflection;
+using System.Windows;
+using WpfTemplates.DependencyInjection.Factories;
 using WpfTemplates.Modules.Home;
-using WpfTemplates.Modules.Settings;
 
 namespace WpfTemplates;
 
 public class MainWindowViewModel : ReactiveObject, IScreen
 {
-    public ReactiveCommand<Unit, IRoutableViewModel> GoToHomeView { get; }
-    public ReactiveCommand<Unit, IRoutableViewModel> GoToSettingsView { get; }
+    private readonly IViewModelFactory _viewModelFactory;
 
     public RoutingState Router { get; } = new RoutingState();
 
-    public MainWindowViewModel()
+    public ReactiveCommand<Unit, Unit> ExitAppCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> ToggleWindowStateCommand { get; set; }
+    public ReactiveCommand<string, Unit> UpdateMaximizedButtonStyle { get; set; }
+    public ReactiveCommand<Unit, WindowState> MinimizeWindowCommand { get; set; }
+    public ReactiveCommand<Type, Unit> Navigate { get; private set; }
+
+    public MainWindowViewModel(IViewModelFactory viewModelFactory)
     {
-        GoToHomeView = ReactiveCommand.CreateFromObservable(() =>
+        _viewModelFactory = viewModelFactory;
+
+        Navigate = ReactiveCommand.Create<Type>(SetRoutedViewHostContent);
+        MaximizeButtonStyle = GetStyleFromResourceDictionary("TitlebarMaximizeButton", "TitleBar.xaml")!;
+
+        ExitAppCommand = ReactiveCommand.Create(Application.Current.Shutdown);
+        ToggleWindowStateCommand = ReactiveCommand.Create(() =>
         {
-            var navResult = Router.Navigate.Execute(new HomeViewModel());
-            MessageBus.Current.SendMessage($"Time shown: ({DateTime.Now})", "Message");
-            return navResult;
+            if (MainWindowState == WindowState.Maximized)
+            {
+                MainWindowState = WindowState.Normal;
+            }
+            else
+            {
+                MainWindowState = WindowState.Maximized;
+            }
         });
-        GoToSettingsView = ReactiveCommand.CreateFromObservable(() => Router.Navigate.Execute(new SettingsViewModel()));
+        MinimizeWindowCommand = ReactiveCommand.Create(() => MainWindowState = WindowState.Minimized);
+    }
+
+    [Reactive]
+    public WindowState MainWindowState { get; set; }
+    [Reactive]
+    public Style MaximizeButtonStyle { get; set; }
+
+    public Style? GetStyleFromResourceDictionary(string styleName, string resourceDictionaryName)
+    {
+        var titleBarResources = new ResourceDictionary();
+        titleBarResources.Source = new Uri($"/{Assembly.GetEntryAssembly()!.GetName().Name};component/Resources/{resourceDictionaryName}",
+                        UriKind.RelativeOrAbsolute);
+        return titleBarResources[styleName] as Style;
+    }
+
+    public void SetRoutedViewHostContent(Type type)
+    {
+        if (Router.NavigationStack.LastOrDefault()?.GetType() == type)
+        {
+            return;
+        }
+
+        Router.Navigate.Execute(_viewModelFactory.CreateRoutableViewModel(type));
     }
 }

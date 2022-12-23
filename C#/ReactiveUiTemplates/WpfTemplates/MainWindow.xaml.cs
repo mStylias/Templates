@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ReactiveMarbles.ObservableEvents;
 using ReactiveUI;
+using System;
 using System.Reactive.Disposables;
+using WpfTemplates.Modules.Home;
+using WpfTemplates.Modules.Settings;
 
 namespace WpfTemplates;
 
@@ -9,17 +12,39 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = ViewModel;
 
         this.WhenActivated(disposables =>
         {
-            this.OneWayBind(ViewModel, vm => vm.Router, v => v.RoutedViewHost.Router)
+            this.OneWayBind(ViewModel, vm => vm.Router, v => v.routedViewHost.Router)
                 .DisposeWith(disposables);
 
-            this.BindCommand(ViewModel, vm => vm.GoToHomeView, v => v.NavigateToHomeButton)
+            navigateToHomeButton
+                .Events().Click
+                .Subscribe(_ => ViewModel?.Navigate.Execute(typeof(HomeViewModel)).Subscribe())
                 .DisposeWith(disposables);
 
-            this.BindCommand(ViewModel, vm => vm.GoToSettingsView, v => v.NavigateToSettingsButton)
+            navigateToSettingsButton
+                .Events().Click
+                .Subscribe(_ => ViewModel?.Navigate.Execute(typeof(SettingsViewModel)).Subscribe())
+                .DisposeWith(disposables);
+
+            // TitleBar
+            this.BindCommand(ViewModel, vm => vm.ExitAppCommand, v => v.exitAppButton)
+                .DisposeWith(disposables);
+            this.BindCommand(ViewModel, vm => vm.ToggleWindowStateCommand, v => v.toggleWindowStateButton)
+                .DisposeWith(disposables);
+            this.BindCommand(ViewModel, vm => vm.MinimizeWindowCommand, v => v.minimizeWindowButton)
+                .DisposeWith(disposables);
+
+            this.Bind(ViewModel, vm => vm.MainWindowState, v => v.mainAppWindow.WindowState)
+                .DisposeWith(disposables);
+            this.WhenAnyValue(v => v.mainAppWindow.WindowState)
+                .Subscribe(ws => {
+                    this.toggleWindowStateButton.Style = ViewModel!.GetStyleFromResourceDictionary(
+                            styleName: ws == System.Windows.WindowState.Maximized ? "TitlebarRestoreDownButton" : "TitlebarMaximizeButton",
+                            resourceDictionaryName: "TitleBar.xaml"
+                        );
+                })
                 .DisposeWith(disposables);
         });
     }

@@ -11,6 +11,6 @@
             Background="Green"
             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="{Binding Message}" />
+        <TextBlock x:Name="messageTextBlock" />
     </Grid>
 </rxui:ReactiveUserControl>

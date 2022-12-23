@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using ReactiveUI;
 using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
+using WpfTemplates.DependencyInjection.Factories;
 
 namespace WpfTemplates.DependencyInjection;
 
@@ -33,10 +34,14 @@ public class AppBootstrapper
         // Add Main Window and Routing
         services.AddSingleton<MainWindow>(sp => new MainWindow { ViewModel = sp.GetRequiredService<MainWindowViewModel>() });
         services.AddSingleton<MainWindowViewModel>();
-        services.AddSingleton<IScreen, MainWindowViewModel>(sp => sp.GetRequiredService<MainWindowViewModel>());
+
+        services.AddTransient<IScreenFactory, ScreenFactory>();
+        services.AddTransient<IViewModelFactory, ViewModelFactory>();
 
         // Add Views and ViewModels
         services.AddViews();
         services.AddViewModels();
+
+        // Add Custom Services
     }
 }

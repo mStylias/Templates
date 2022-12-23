@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using ReactiveUI;
-using Splat;
+﻿using ReactiveUI;
+using WpfTemplates.DependencyInjection.Factories;
 
 namespace WpfTemplates.Modules.Settings;
 
@@ -9,8 +8,8 @@ public class SettingsViewModel : ReactiveObject, IRoutableViewModel
     public string? UrlPathSegment => nameof(SettingsViewModel);
     public IScreen HostScreen { get; }
 
-    public SettingsViewModel(IScreen hostScreen = null)
+    public SettingsViewModel(IScreenFactory screenFactory)
     {
-        HostScreen = hostScreen ?? Locator.Current.GetService<IScreen>()!;
+        HostScreen = screenFactory.GetMainWindowViewModel();
     }
 }
