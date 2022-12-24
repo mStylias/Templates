@@ -23,7 +23,18 @@
 
     <Window.Style>
         <Style TargetType="local:MainWindow"
-               BasedOn="{StaticResource WindowChromeStyle}" />
+               BasedOn="{StaticResource WindowChromeStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=mainAppWindow, Path=WindowState}"
+                             Value="Maximized">
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome CaptionHeight="38" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Style>
 
     <Grid>
@@ -31,6 +42,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            
         </Grid.RowDefinitions>
         
         <!-- TitleBar -->
