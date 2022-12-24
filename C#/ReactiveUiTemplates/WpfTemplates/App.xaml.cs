@@ -4,7 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using WpfTemplates.DependencyInjection;
-using WpfTemplates.Modules.Home;
+using WpfTemplates.Sections.Home;
 
 namespace WpfTemplates;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
-using WpfTemplates.Modules.Home;
-using WpfTemplates.Modules.Settings;
+using WpfTemplates.Sections.Home;
+using WpfTemplates.Sections.Settings;
 
 namespace WpfTemplates.DependencyInjection;
 

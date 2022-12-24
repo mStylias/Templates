@@ -2,7 +2,7 @@
 using ReactiveUI.Fody.Helpers;
 using WpfTemplates.DependencyInjection.Factories;
 
-namespace WpfTemplates.Modules.Home;
+namespace WpfTemplates.Sections.Home;
 
 public class HomeViewModel : ReactiveObject, IRoutableViewModel
 {

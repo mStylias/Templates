@@ -42,8 +42,7 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="30" />
-            
+
         </Grid.RowDefinitions>
         
         <!-- TitleBar -->

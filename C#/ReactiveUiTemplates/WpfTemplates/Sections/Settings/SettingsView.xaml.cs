@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace WpfTemplates.Modules.Settings;
+namespace WpfTemplates.Sections.Settings;
 
 public partial class SettingsView : ReactiveUserControl<SettingsViewModel>
 {

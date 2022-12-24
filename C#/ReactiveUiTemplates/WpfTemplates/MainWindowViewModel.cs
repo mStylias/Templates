@@ -9,7 +9,7 @@ using System.Reactive.Linq;
 using System.Reflection;
 using System.Windows;
 using WpfTemplates.DependencyInjection.Factories;
-using WpfTemplates.Modules.Home;
+using WpfTemplates.Sections.Home;
 
 namespace WpfTemplates;
 

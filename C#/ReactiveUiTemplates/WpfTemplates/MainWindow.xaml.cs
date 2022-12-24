@@ -2,8 +2,8 @@
 using ReactiveUI;
 using System;
 using System.Reactive.Disposables;
-using WpfTemplates.Modules.Home;
-using WpfTemplates.Modules.Settings;
+using WpfTemplates.Sections.Home;
+using WpfTemplates.Sections.Settings;
 
 namespace WpfTemplates;
 

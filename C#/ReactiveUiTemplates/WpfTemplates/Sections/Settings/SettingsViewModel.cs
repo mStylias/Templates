@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using WpfTemplates.DependencyInjection.Factories;
 
-namespace WpfTemplates.Modules.Settings;
+namespace WpfTemplates.Sections.Settings;
 
 public class SettingsViewModel : ReactiveObject, IRoutableViewModel
 {

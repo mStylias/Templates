@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
 using System.Reactive.Disposables;
 
-namespace WpfTemplates.Modules.Home;
+namespace WpfTemplates.Sections.Home;
 
 public partial class HomeView : ReactiveUserControl<HomeViewModel>
 {
