@@ -35,8 +35,8 @@ public class AppBootstrapper
         services.AddSingleton<MainWindow>(sp => new MainWindow { ViewModel = sp.GetRequiredService<MainWindowViewModel>() });
         services.AddSingleton<MainWindowViewModel>();
 
-        services.AddTransient<IScreenFactory, ScreenFactory>();
-        services.AddTransient<IViewModelFactory, ViewModelFactory>();
+        services.AddSingleton<IScreenFactory, ScreenFactory>();
+        services.AddSingleton<IViewModelFactory, ViewModelFactory>();
 
         // Add Views and ViewModels
         services.AddViews();

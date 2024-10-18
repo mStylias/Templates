@@ -1,15 +1,12 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reflection;
 using System.Windows;
 using WpfTemplates.DependencyInjection.Factories;
-using WpfTemplates.Sections.Home;
 
 namespace WpfTemplates;
 
@@ -21,18 +18,25 @@ public class MainWindowViewModel : ReactiveObject, IScreen
 
     public ReactiveCommand<Unit, Unit> ExitAppCommand { get; set; }
     public ReactiveCommand<Unit, Unit> ToggleWindowStateCommand { get; set; }
-    public ReactiveCommand<string, Unit> UpdateMaximizedButtonStyle { get; set; }
     public ReactiveCommand<Unit, WindowState> MinimizeWindowCommand { get; set; }
-    public ReactiveCommand<Type, Unit> Navigate { get; private set; }
+    public ReactiveCommand<Type, IRoutableViewModel?> Navigate { get; private set; }
 
     public MainWindowViewModel(IViewModelFactory viewModelFactory)
     {
         _viewModelFactory = viewModelFactory;
 
-        Navigate = ReactiveCommand.Create<Type>(SetRoutedViewHostContent);
+        Navigate = ReactiveCommand.CreateFromObservable<Type, IRoutableViewModel?>(vmType =>
+        {
+            var currentViewModel = Router.NavigationStack.LastOrDefault();
+            return currentViewModel?.GetType() != vmType
+                ? Router.NavigateAndReset.Execute(_viewModelFactory.CreateRoutableViewModel(vmType))
+                : Observable.Empty(currentViewModel);
+        });
+
         MaximizeButtonStyle = GetStyleFromResourceDictionary("TitlebarMaximizeButton", "TitleBar.xaml")!;
 
         ExitAppCommand = ReactiveCommand.Create(Application.Current.Shutdown);
+
         ToggleWindowStateCommand = ReactiveCommand.Create(() =>
         {
             if (MainWindowState == WindowState.Maximized)
@@ -58,15 +62,5 @@ public class MainWindowViewModel : ReactiveObject, IScreen
         titleBarResources.Source = new Uri($"/{Assembly.GetEntryAssembly()!.GetName().Name};component/Resources/{resourceDictionaryName}",
                         UriKind.RelativeOrAbsolute);
         return titleBarResources[styleName] as Style;
-    }
-
-    public void SetRoutedViewHostContent(Type type)
-    {
-        if (Router.NavigationStack.LastOrDefault()?.GetType() == type)
-        {
-            return;
-        }
-
-        Router.Navigate.Execute(_viewModelFactory.CreateRoutableViewModel(type));
     }
 }
